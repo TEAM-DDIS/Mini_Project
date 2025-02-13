@@ -1,4 +1,5 @@
 package teamDY.library.aggregate;
 
-public class Category {
+public enum Category {
+    FICTION, SOCIETY, SCIENCE, CHILDREN, ART;
 }

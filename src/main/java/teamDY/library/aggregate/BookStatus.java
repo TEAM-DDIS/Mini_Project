@@ -1,4 +1,5 @@
 package teamDY.library.aggregate;
 
-public class BookStatus {
+public enum BookStatus {
+    IN_LIBRARY, CHECKED_OUT;
 }

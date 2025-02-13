@@ -12,7 +12,7 @@ public class BookRepository {
     private final ArrayList<Book> bookList = new ArrayList<>();
 
     private final File file = new File(
-            "src/main/java/library/db/bookDB.dat"
+            "src/main/java/teamDY/library/db/bookDB.dat"
     );
 
     public BookRepository() {

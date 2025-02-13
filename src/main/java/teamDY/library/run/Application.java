@@ -32,7 +32,7 @@ public class Application {
                 case 3: break;
                 case 4: break;
                 case 5: break;
-                case 6: break;
+                case 6: addBook(); break;
                 case 7: break;
                 case 9:
                     System.out.println("프로그램을 종료합니다.");

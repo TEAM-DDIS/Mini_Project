@@ -1,8 +1,9 @@
 package teamKS.storemanage.run;
 
-import section01.storemanage.aggregate.Category;
-import section01.storemanage.aggregate.Product;
-import section01.storemanage.service.StoreService;
+
+import teamKS.storemanage.aggregate.Category;
+import teamKS.storemanage.aggregate.Product;
+import teamKS.storemanage.service.StoreService;
 
 import java.util.Scanner;
 

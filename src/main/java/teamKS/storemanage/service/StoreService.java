@@ -1,7 +1,9 @@
 package teamKS.storemanage.service;
 
-import section01.storemanage.aggregate.Product;
-import section01.storemanage.repository.StoreRepository;
+
+
+import teamKS.storemanage.aggregate.Product;
+import teamKS.storemanage.repository.StoreRepository;
 
 import java.util.ArrayList;
 

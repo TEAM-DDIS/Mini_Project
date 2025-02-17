@@ -14,6 +14,13 @@ public class Cat implements Serializable {
     public Cat() {
     }
 
+    public Cat(String name, String breeds, Gender gender, boolean isNeutered) {
+        this.name = name;
+        this.breeds = breeds;
+        this.gender = gender;
+        this.isNeutered = isNeutered;
+    }
+
     public Cat(int catNo, String name, String breeds, Gender gender, String regDate, CatStatus catStatus, boolean isNeutered) {
         this.catNo = catNo;
         this.name = name;

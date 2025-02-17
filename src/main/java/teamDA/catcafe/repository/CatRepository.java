@@ -3,6 +3,7 @@ package teamDA.catcafe.repository;
 import teamDA.catcafe.aggregate.Cat;
 import teamDA.catcafe.aggregate.CatStatus;
 import teamDA.catcafe.aggregate.Gender;
+import teamDA.catcafe.stream.MyObjectOutput;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -85,5 +86,67 @@ public class CatRepository {
         }
 
         return returnCat;
+    }
+
+    public int selectCatNo() {
+        Cat lastCat = catList.get(catList.size() - 1);
+        return lastCat.getCatNo();
+    }
+
+    // 첫 헤더 제외하고 디비에 저장하도록
+    public int insertCat(Cat cat) {
+        MyObjectOutput moo = null;
+
+        int result = 0;
+
+        try {
+            moo = new MyObjectOutput
+                   (new BufferedOutputStream
+                           (new FileOutputStream(file, true))
+                   );
+
+            //파일로 신규 회원 추가
+            moo.writeObject(cat);
+
+            // 신규 회원 추가 컬렉션에 저장
+            catList.add(cat);
+
+            result = 1;
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+              if(moo != null) moo.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return result;
+    }
+
+    // 수정된 사본이 넘어옴
+    public int updateCat(Cat reformedCat) {
+        for (int i = 0; i < catList.size(); i++) {
+            if (catList.get(i).getCatNo() == reformedCat.getCatNo()) {
+                catList.set(i, reformedCat);   // 컬렉션 update
+                saveCats(catList);             // 파일 update
+                return 1;
+            }
+        }
+        return 0;
+    }
+
+    // softdelete
+    public int deleteCat(int removeCatNo) {
+        int result = 0;
+        for (Cat cat : catList) {
+            if (cat.getCatNo() == removeCatNo) {
+                cat.setCatStatus(CatStatus.DEACTIVATED);
+                result = 1;
+                saveCats(catList);
+            }
+        }
+        return result;
     }
 }
